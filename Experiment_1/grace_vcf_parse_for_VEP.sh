@@ -39,10 +39,10 @@ cp gnomad.genomes.v3.1.2.sites.{$va}.vcf.bgz gnomad.genomes.v3.1.2.sites.{$va}.v
 # Use the nohup command to stop your processes coming to stop when working on a super computer cluster.
 # Using zgrep to operate on compressed files and save on disk space as well.
 
-nohup zgrep "PASS" gnomad.genomes.v3.1.2.sites.{$va}.vcf.gz |\
+nohup zgrep "PASS" gnomad.genomes.v3.1.2.sites."$va".vcf.gz |\
     zgrep "protein_coding" |\
     zgrep -E "rs[0-9]++" |\
-    awk '{print $1, $2, $3, $4, $5, $6, $7}' >> {$va}_PASS_protein_coding_rsID.vcf
+    awk '{print $1, $2, $3, $4, $5, $6, $7}' >> "$va"_PASS_protein_coding_rsID.vcf
 
 exit 0
 
