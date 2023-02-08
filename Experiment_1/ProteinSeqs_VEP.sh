@@ -1,5 +1,5 @@
 #!/bin/bash
-# grace_vcf_parse_for_VEP.sh
+# ProteinSeqs_VEP.sh
 usage(){
     echo \
 "
@@ -38,7 +38,7 @@ fi
 
 va=${nameA};
 
-./vep --input_file ../Experiment_1/Experiment_1/chrX_PASS_protein_coding_rsID.vcf \
+./vep --input_file ../Experiment_1/"$va"_PASS_protein_coding_rsID.vcf \
       --species homo_sapiens \
       --coding_only \
       --symbol \
@@ -48,19 +48,11 @@ va=${nameA};
       --variant_class \
       --cache \
       --verbose \ 
-      --output_file ../Experiment_1/ProteinSeqs_Output/chrX_gnomAD_v3_PASS_Variants.txt \
-      --stats_file ../Experiment_1/ProteinSeqs_Output/chrX_gnomAD_v3_PASS_Variants.txt_summary.html \
-      --warning_file ../Experiment_1/ProteinSeqs_Output/chrX_gnomAD_v3_PASS_Variants_STDERR.out \
-      --plugin ProteinSeqs \
+      --output_file ../Experiment_1/ProteinSeqs_Output/"$va"_gnomAD_v3_PASS_Variants.txt \
+      --stats_file ../Experiment_1/ProteinSeqs_Output/"$va"_gnomAD_v3_PASS_Variants.txt_summary.html \
+      --warning_file ../Experiment_1/ProteinSeqs_Output/"$va"_gnomAD_v3_PASS_Variants_STDERR.out \
+      --plugin ProteinSeqs,"$va"_reference.fa,"$va"_mutated.fa 
 
 exit 0
-
-
-      
-# ProteinSeqs produces two files called reference.fa and mutated.fa by default. This makes it difficult to run multiple
-# vcf files in parallel. In order to avoid overwritting it you should move/rename the output files to the directory
-# where your experiment is contained as shown below:
-# mv mutated.fa ../Experiment_1/ProteinSeqs_Output/"$va"_mutated.fa
-# mv reference.fa ../Experiment_1/ProteinSeqs_Output/"$va"_reference.fa
 
 
