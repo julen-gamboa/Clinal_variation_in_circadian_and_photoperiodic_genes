@@ -1,0 +1,39 @@
+*Experiment 1 aims to address the question of whether clinal variation among populations represented in gnomAD v3.1.2 exists
+by analysing sequence level segregation/clustering of variants in the dataset.
+
+Step 1)
+To achieve the aims of this experiment, gnomAD v3.1.2 vcf files for the whole genome were downloaded and protein coding variants
+were annotated with Ensembl VEP v.107.
+
+Step 2)
+Protein FASTA sequences for each variant was generated using the Ensembl VEP ProteinSeqs plugin. Output files were processed
+for downstream analysis with CD-HIT (currently in process)
+
+Step 3)
+I expect that the results of clustering with CD-HIT will capture any clinal variation (identity and coverage threshold dependent)
+that might be evident at the sequence level. Variants at this stage are not tagged with labels describing differences in allele
+frequencies among populations, therefore, any projection of these clusters in parameter space would be reflecting the effect of
+sequence identity and nothing else. Posterior identification of variants by using population-specific allele frequencies for suites
+of genes known to exhibit clinal variation would allow us to determine whether sequence-level information is sufficient
+to segregate variants into latitudinal transects or not.
+
+*Experiment 2
+Using ML classifier algorithms to assess clinal variation without using population-specific allele frequencies.
+The aim of this experiment is to determine whether a combination of features (protein clustering, protein annotation, protein
+physico-chemical properties, etc) is sufficient to identify genes exhibiting clinal variation given functional differences
+in the variants produced at each locus. The main reason to avoid using population-specific allele frequencies is two-fold:
+known issues with self-labelling/identification of individuals sampled, and pre-assigned population tags that would invariably
+bias classification and obscure the contribution of protein-specific properties that might indicate the action of population
+specific forces in a latitudinal context.
+
+Step 1)
+Generation of an input matrix to build a classifier using XGBoost is the intention. 
+Porting cluster identifiers from the CD-HIT output for each variant to this input matrix would provide sequence-level encoding
+that can be used by XGBoost to evaluate during classifier model construction.
+
+Annotation from InterProScan can also be encoded in this way and provide protein annotation-level information for classification.
+
+Other features are currently being considered but their inclusion will depend on both computational time constraints and the kind
+of information these features may encode. E.g. AlphaFold's pLDDT might be a desirable metric to include for all regions of a protein
+and while data for the whole proteome is freely available, metrics for variants are not.
+
