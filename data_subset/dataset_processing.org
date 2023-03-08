@@ -1,0 +1,15 @@
+H sapiens (PASS) all	18122156
+H sapiens (circadian subset)	6095
+H sapiens (positive control subset)	3464
+H sapiens (dataset to partition and cluster) 18112597
+
+1) Partition the data first and foremost. An 80:20 partition would yield 3,622,519 sequences on the test set and 14,490,078 sequences on the training set
+2) Add the circadian subset to the test set
+3) Keep the positive control subset separate from the test set
+4) Cluster the remaining sequences (training set) with cd-hit at 100pc identity and coverage to reduce redundancy at the sequence level
+5) Generate amino acid frequencies for resulting cd-hit cluster representative sequences
+6) Normalize with IHS method (inverse hyperbolic sine)
+(normalization of the training set must be independent of the testing set and positive control set)
+
+This is now ready for downstream machine learning analyses
+
