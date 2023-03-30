@@ -14,7 +14,7 @@
 # take into account N and LS by way of the following relationship: C = LS/N
 # Where N = Number of items in subclusters, and LS =  vector sum of the data points.
 # Author: Julio Gamboa
-# emails: j.a.r.gamboa@gmail.com
+# email: j.a.r.gamboa@gmail.com
 
 
 import numpy as np
